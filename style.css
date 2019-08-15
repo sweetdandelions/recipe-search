@@ -1,0 +1,251 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+ul, li {
+    list-style: none;
+    text-decoration: none;
+    border-bottom: 1px solid #fff;
+}
+
+body {
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.4), 
+        rgba(0, 0, 0, 0.4)),
+        url('img/background2.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/*=================Search Form=======================*/
+
+.container {
+    display: flex;
+    width: 50%;
+    margin: 100px auto 0;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /*background: rgba(0, 0, 0, .3);*/
+    padding: 30px;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-content h1 {
+    font-size: 2.2em;
+    color: #fff;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+input[type=text], .btn {
+    margin: 50px 0 20px 0;
+    padding: 15px;
+    width: 100%;
+    border: none;
+    border-radius: 2px;
+    color: #800870;
+    position: relative;
+}
+
+input:focus::-webkit-input-placeholder { color:transparent; }
+input:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
+input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
+input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
+
+::placeholder {
+    color: var(--placeholder, #800870);
+}
+
+.btn {
+    background: #fff;
+    width: 30%;
+    cursor: pointer;
+    margin: 20px 0 30px 0;
+    font-size: 1em;
+    letter-spacing: 2px;
+    transition: all .2s ease;
+}
+
+.btn:hover {
+    background: #2d3033;
+    color: #fff;
+    box-shadow: inset 0 0 0 2px #fff;
+}
+
+
+/*=================Results==================*/
+
+.item-container {
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 30px;
+    width: 75%;
+    margin: 0 auto;
+    /*background: #fff;*/
+    padding: 30px; 
+    margin-bottom: 50px;
+}
+
+.item {
+    background: #00000056;
+    border-radius: 2px;
+}
+
+.item img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+figcaption {
+    /*background: #2d3033;*/
+    padding: 5px 15px;
+    width: 100%;
+}
+
+figcaption a, footer a {
+    color: #fff;
+    transition: all .3s ease;
+}
+
+figcaption a:hover {
+    color: rgb(182, 176, 176);
+}
+
+.item p, li, h2, summary {
+    color: #fff;
+    padding: 5px 15px;
+}
+
+li {
+    width: 80%;
+    margin: 0 auto;
+}
+
+details { 
+    display: block;
+    cursor: pointer;
+}
+
+
+summary:focus {
+    outline: none;
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pill {
+    background: #088052;
+    width: 30%;
+}
+
+.danger {
+    background: #c71818;
+    width: 100%;
+}
+
+.pill, .danger {
+    color: #d9d9e2;
+    padding: 2px;
+    border-radius: 10px;
+    font-size: .8em;
+    margin: 10px;
+    text-align: center;  
+}
+
+footer {
+    background: #151618;
+    color: #fff;
+    font-size: 1.1em;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #d9d9e2;
+}
+
+
+.err  {
+    background: #a72222;
+    padding: 15px;
+    width: 250px;
+    color: #fff;
+    border-radius: 5px;
+}
+
+
+
+/* Standard syntax */
+@keyframes shake {
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+  
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+  
+    40%, 60% {
+      transform: translate3d(4px, 0, 0);
+    }
+  }
+  
+  .apply-shake {
+      animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  }
+
+@media screen and (max-width: 768px) {
+
+    body {
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .btn {
+        width: 50%;
+        font-size: .6em;
+    }
+
+    .form-content h1 {
+        font-size: 1.6em;
+    }
+    
+    .container {
+        width: 100%;
+    }
+
+    .btn {
+        font-size: 1em;
+    }
+}
+
