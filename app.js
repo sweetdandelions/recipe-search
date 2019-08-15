@@ -1,7 +1,7 @@
 // Set API ID
-const apiID = '692ff0ff';
+const apiID = 'YOUR_API_ID';
 // Set API key
-const apiKey = '8e5c003afc2e09b6105e6175f1006b88';
+const apiKey = 'YOUR_API_KEY';
 // Get input value (user enters: broccoli)
 let query = document.getElementById('input');
 // Set the link to fetch data later
@@ -51,12 +51,12 @@ function getRecipe(e) { // pass the event
         return response.json(); // get data so you can work with it
     })
         .then(data => {
-            console.log(data); // check that you actually got the data which is json object and
-            // look for hits array  which holds recipies and the parameters you need to work with later
-            // via dot notation to access them (object access dummy!)
+            console.log(data); // check that you actually got the data
 
             // Query not found
             if(data.hits.length === 0) {
+                
+                // Make a div
                 const div = document.createElement('div');
 
                 // Add the HTML
@@ -65,6 +65,7 @@ function getRecipe(e) { // pass the event
                     There\'re no results. 
                     </div>
                 `;
+                
                     // Insert before input field
                     const reference = document.querySelector('#input');
                     const parentNode = reference.parentElement;
@@ -77,6 +78,7 @@ function getRecipe(e) { // pass the event
                 return;
             } else {
 
+            // Work with the data
             let recipes = []; // create an empty array to hold each recipie
             let output = ''; // create a variable to hold the markup for each recipe item
             for(i = 0; i < data.hits.length; i++) { // loop through each element (object) hits contains
