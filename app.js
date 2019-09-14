@@ -1,16 +1,11 @@
-// Set API ID
-const apiID = 'YOUR_API_ID';
-// Set API key
-const apiKey = 'YOUR_API_KEY';
-// Get input value (user enters: broccoli)
-let query = document.getElementById('input');
-// Set the link to fetch data later
-const url = 'https://api.edamam.com/search';
-// Get the form
+// Variables declaration
+const apiID = '692ff0ff';
+const apiKey = '8e5c003afc2e09b6105e6175f1006b88';
+const link = 'https://api.edamam.com/search';
 const search = document.getElementById('search');
 
 
-// Event on the form - hit enter or click button gets you results
+// Event listeners 
 search.addEventListener('submit', getRecipe);
 
 input.addEventListener("animationend", () => {
@@ -18,7 +13,7 @@ input.addEventListener("animationend", () => {
 });
 
 // Fetch results
-function getRecipe(e) { // pass the event
+function getRecipe(e) { 
     e.preventDefault(); // prevents reload on page 
 
     // Get input value
@@ -41,31 +36,26 @@ function getRecipe(e) { // pass the event
          return;
     } else {
 
-    // Cuz it's not working on empty input - fix that in the future
-    let link = `${url}?q=${query.value}&app_id=${apiID}&app_key=${apiKey}&from=0&to=12`; // show 12 items : look for count implementation
-    console.log("URL:", link); // check if it actually calls - just to be sure for syntax errors
-    fetch(link) // make api call
+    let url = `${link}?q=${userQuery}&app_id=${apiID}&app_key=${apiKey}&from=0&to=30`; 
+    console.log("URL:", url); 
+    fetch(url) 
     
     .then(response => {
-        console.log(response); // check if you got 200 ok
-        return response.json(); // get data so you can work with it
+        //console.log(response); 
+        return response.json(); 
     })
         .then(data => {
-            console.log(data); // check that you actually got the data
+            //console.log(data); 
 
             // Query not found
             if(data.hits.length === 0) {
-                
-                // Make a div
                 const div = document.createElement('div');
 
-                // Add the HTML
                 div.innerHTML = `
                     <div class="err">
                     There\'re no results. 
                     </div>
                 `;
-                
                     // Insert before input field
                     const reference = document.querySelector('#input');
                     const parentNode = reference.parentElement;
@@ -78,24 +68,23 @@ function getRecipe(e) { // pass the event
                 return;
             } else {
 
-            // Work with the data
-            let recipes = []; // create an empty array to hold each recipie
+            let recipes = []; // create an empty array to hold each recipe
             let output = ''; // create a variable to hold the markup for each recipe item
-            for(i = 0; i < data.hits.length; i++) { // loop through each element (object) hits contains
-                recipes.push(data.hits[i].recipe); // place every item into the array that contains the recipe obj
+            for(i = 0; i < data.hits.length; i++) { 
+                recipes.push(data.hits[i].recipe); 
             }
-            console.log(recipes); // see what you actually got
+            //console.log(recipes); 
 
             recipes.forEach((recipe) => {
                 output += `<div class="item">
-                <div class="img"><img src="${recipe.image}" alt="${recipe.label}"></div>
-                <h2>${recipe.label}</h2>
-                <p>By ${recipe.source}</p>
-                <figcaption><a href="${recipe.url}" target="_blank">Read Cooking Instructions</a></figcaption>
-                <p>Total time: ${recipe.totalTime}</p>
-                <details>
-                <summary>Ingredients list</summary>
-          `;
+                    <div class="img"><img src="${recipe.image}" alt="${recipe.label}"></div>
+                    <h2>${recipe.label}</h2>
+                    <p>By ${recipe.source}</p>
+                    <figcaption><a href="${recipe.url}" target="_blank">Read Cooking Instructions</a></figcaption>
+                    <p>Total time: ${recipe.totalTime}</p>
+                    <details>
+                    <summary>Ingredients list</summary>
+                `;
                 // Loop through each of the lines
                 recipe.ingredientLines.forEach((line) => {
                       output += `<li> ${line}</li>`;
@@ -110,7 +99,7 @@ function getRecipe(e) { // pass the event
             });
         
 
-            // Show container that you hid in css goddamnit!! 
+            // Show container that you hid in css 
             document.querySelector('.item-container').style.display = 'grid';
             // Insert results
             document.getElementById('results').innerHTML = output;
